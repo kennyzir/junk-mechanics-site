@@ -168,7 +168,7 @@ export default function HomePage() {
             {[
               {
                 step: "1",
-                title: "Redeem today&apos;s codes",
+                title: "Redeem today's codes",
                 body: "Bank first Cash with any verified codes (active list on /codes).",
                 href: "/codes"
               },
