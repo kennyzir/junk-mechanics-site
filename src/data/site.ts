@@ -296,20 +296,20 @@ export const wikiCards: LinkCard[] = [
   {
     title: "Vehicles",
     href: "/vehicles",
-    eyebrow: "Wiki",
-    description: "Civix RK, Mercer M21, Leksoh, G80 marque, and car-family lookup notes."
+    eyebrow: "Car database",
+    description: "Civix RK, Mercer M21, Leksoh, the M2CS, the 570s, and the BMW G80 marque — confirmed car families with rarity and flip-value labels, so you know which wrecks are worth chasing."
   },
   {
     title: "Gamepasses",
     href: "/gamepasses",
-    eyebrow: "Wiki",
-    description: "Cash boosts, garage slots, and upgrade-value tradeoffs."
+    eyebrow: "Robux buys",
+    description: "Cash boosts, capacity, and repair-speed gamepasses, with a buying order that fixes your real bottleneck instead of wasting Robux on a flashy boost you do not need."
   },
   {
     title: "Guides",
     href: "/guides",
-    eyebrow: "Wiki",
-    description: "Beginner, repair, auction, and money-method guidance."
+    eyebrow: "Walkthroughs",
+    description: "Beginner bidding, the repair loop, auction bids, and the poor-to-rich money method — practical flip routes tested against the confirmed game economy."
   }
 ];
 

@@ -147,9 +147,9 @@ export default function HomePage() {
           </div>
           <div>
             <SectionHeader
-              eyebrow="Wiki coverage"
-              title="Entity pages for Roblox search demand"
-              copy="Current demand centers on codes, vehicles, marque families, gamepasses, money methods, auction houses, and source-status lookups, so the site now exposes focused child routes instead of hiding every query inside one hub."
+              eyebrow="Game systems"
+              title="Understand the car-flip loop before you spend Cash"
+              copy="Junk Mechanics is an auction-to-dealership economy: bid on wrecks, repair radiators and batteries, repaint, then resell at the dealership. These pages cover the car families, gamepasses, and the fastest route to grow your garage."
             />
             <div className="mt-6 grid gap-3">
               {wikiCards.map((item) => (
