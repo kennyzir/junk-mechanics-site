@@ -241,27 +241,27 @@ export const editorialSignals: EditorialSignal[] = [
 export const videoGuides: LinkCard[] = [
   {
     title: "Poor to Rich money method",
-    href: "https://www.youtube.com/watch?v=0",
+    href: "https://www.youtube.com/watch?v=48aS55Tev1w",
     eyebrow: "Video",
     description: "Avinestas explores income strategies from salvage-yard restoration to job opportunities and gamepass impact."
   },
   {
     title: "I bought EVERY garage",
-    href: "https://www.youtube.com/watch?v=1",
+    href: "https://www.youtube.com/watch?v=shztrCGPDN4",
     eyebrow: "Video",
     description: "Garage progression and upgrade-cost coverage from a recent creator run."
   },
   {
     title: "BEST CAR build",
-    href: "https://www.youtube.com/watch?v=2",
+    href: "https://www.youtube.com/watch?v=LTj8bj0udqA",
     eyebrow: "Video",
     description: "Repair-route deep dive: cleaning radiators, charging batteries, repainting, then selling at the dealership."
   },
   {
-    title: "4 NEW VEHICLES update",
-    href: "https://www.youtube.com/watch?v=3",
+    title: "All working codes",
+    href: "https://www.youtube.com/watch?v=FE-IE5f4mCg",
     eyebrow: "Video",
-    description: "August 5, 2026 update walkthrough with Civix RK, Mercer M21, and Leksoh additions."
+    description: "Current working Junk Mechanics codes roundup from ItsChalls (August 2026)."
   }
 ];
 
