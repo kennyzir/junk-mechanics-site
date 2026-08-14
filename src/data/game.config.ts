@@ -3,7 +3,7 @@ import type { GameConfig } from "@/types/site";
 export const gameConfig: GameConfig = {
   name: "Junk Mechanics",
   slug: "junk-mechanics",
-  domain: "https://junkmechanicshub.com",
+  domain: "https://junkmechanics.org",
   theme: {
     primaryColor: "#FACC15",
     accentColor: "#F97316",
