@@ -118,7 +118,30 @@ export default function CodesPage() {
       />
       <AdsterraArticleTop />
 
-      <section className="mt-10" aria-labelledby="active-codes">
+      {/* Quick rules + jump nav (Evomon-style top-of-page utility) */}
+      <div className="mt-8 grid gap-4 lg:grid-cols-[1fr_240px]">
+        <div className="rounded-lg border border-white/10 bg-black/20 p-5">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[color:var(--accent)]">Quick rules</h2>
+          <ul className="mt-3 grid gap-2 text-sm text-white/70 md:grid-cols-2">
+            <li>· Codes expire fast — redeem the current set now, not later.</li>
+            <li>· Codes are case-sensitive; paste them exactly as listed.</li>
+            <li>· Each code usually works once per account.</li>
+            <li>· New codes drop with updates — the next batch arrives with the next patch or like-milestone.</li>
+          </ul>
+        </div>
+        <nav className="rounded-lg border border-white/10 bg-black/20 p-5" aria-label="On this page">
+          <h2 className="text-sm font-bold uppercase tracking-wide text-[color:var(--accent)]">On this page</h2>
+          <ul className="mt-3 grid gap-2 text-sm text-white/70">
+            <li><a href="#active-codes" className="hover:text-[color:var(--accent)]">Active codes</a></li>
+            <li><a href="#how-to-redeem" className="hover:text-[color:var(--accent)]">How to redeem</a></li>
+            <li><a href="#when-to-use" className="hover:text-[color:var(--accent)]">When to use rewards</a></li>
+            <li><a href="#why-codes-fail" className="hover:text-[color:var(--accent)]">Why codes fail</a></li>
+            <li><a href="#next-signals" className="hover:text-[color:var(--accent)]">Next code signals</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <section className="mt-10" id="active-codes" aria-labelledby="active-codes">
         <SectionHeader
           eyebrow="Active list"
           title="Working Junk Mechanics codes"
@@ -201,6 +224,61 @@ export default function CodesPage() {
             ))}
           </div>
         </article>
+      </section>
+
+      <section className="mt-10 grid gap-4 lg:grid-cols-2">
+        <article className="content-card" id="when-to-use">
+          <SectionHeader
+            eyebrow="Spend advice"
+            title="When to use your code rewards"
+            copy="Free Cash from codes is a bankroll, not the win condition. Reinvest it to start the money loop, and avoid burning it on overpriced wrecks."
+          />
+          <ul className="mt-5 grid gap-3 text-sm leading-6 text-white/70">
+            <li><strong className="text-white">Start the loop:</strong> use the first 20K Cash reward on your first cheap wreck and flip it through the repair loop so it becomes more Cash.</li>
+            <li><strong className="text-white">Buy capacity before new cars:</strong> a garage slot or capacity gamepass removes the storage chokehold that stops profitable flips.</li>
+            <li><strong className="text-white">Test with the calculator:</strong> check a marque in the flip calculator before committing a free-Cash stack, so a bad auction bid can&apos;t wipe the reward.</li>
+            <li><strong className="text-white">Hold for a target marque:</strong> if you want a 570s or legend-tier car, save the reward instead of spending it on a filler wreck.</li>
+          </ul>
+        </article>
+        <article className="content-card" id="why-codes-fail">
+          <SectionHeader
+            eyebrow="Troubleshooting"
+            title="Why a Junk Mechanics code might not work"
+            copy="A code showing as invalid usually has one of a few causes. Check these before assuming the code is dead."
+          />
+          <ul className="mt-5 grid gap-3 text-sm leading-6 text-white/70">
+            <li><strong className="text-white">Expired:</strong> codes roll over fast. A code that worked last week may be dead today — check the Active list only.</li>
+            <li><strong className="text-white">Case or spacing:</strong> paste exactly as listed; one wrong letter or trailing space fails the check.</li>
+            <li><strong className="text-white">Already claimed:</strong> most codes work once per account. If you redeemed it before, it will look invalid now.</li>
+            <li><strong className="text-white">Typo on the panel path:</strong> the Codes button can sit in Main Menu, Shop, or Settings after an update. Re-open the correct panel.</li>
+            <li><strong className="text-white">Server rollout:</strong> right after a new code drops, it can take minutes to be live for everyone. Wait and retry.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section className="mt-10" id="next-signals">
+        <SectionHeader
+          eyebrow="What to watch"
+          title="Signals a new code drop is coming"
+          copy="Codes tend to arrive with updates or like-milestones. Here is what to watch so you catch the next redeem window first."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <div className="content-card">
+            <span className="mini-label">Update cadence</span>
+            <h3 className="mt-3 text-lg font-bold text-white">Major patch = new batch</h3>
+            <p className="mt-2 text-sm leading-6 text-white/66">The August 5, 2026 update (4 vehicles + paint + turbos) shipped new codes. Expect a code drop whenever a big content patch lands.</p>
+          </div>
+          <div className="content-card">
+            <span className="mini-label">Community</span>
+            <h3 className="mt-3 text-lg font-bold text-white">Official Discord announces first</h3>
+            <p className="mt-2 text-sm leading-6 text-white/66">Creator-announced codes tend to surface in the official Discord before dated trackers. Seek the official invite from the Roblox page.</p>
+          </div>
+          <div className="content-card">
+            <span className="mini-label">Like milestones</span>
+            <h3 className="mt-3 text-lg font-bold text-white">Milestone rewards</h3>
+            <p className="mt-2 text-sm leading-6 text-white/66">Roblox game pages reward like-count milestones with codes. Watch the game page for the next likes target to guess timing.</p>
+          </div>
+        </div>
       </section>
 
       <section className="mt-10" aria-labelledby="related-routes">

@@ -4,11 +4,9 @@ import {
   activeCodes,
   editorialSignals,
   faqs,
-  guideClusters,
   heroMetrics,
   officialLinks,
   siteConfig,
-  tierPreview,
   toolCards,
   videoGuides
 } from "@/data/site";
@@ -85,78 +83,92 @@ export default function HomePage() {
       </section>
       <AdsterraArticleMid />
 
-      {/* ── LEARN: new player questions first ── */}
-      <section className="bg-white/[0.025]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
-          <div>
-            <SectionHeader
-              eyebrow="Learn · new players"
-              title="New to Junk Mechanics?"
-              copy="Junk Mechanics is an auction-to-dealership economy: bid on wrecks, repair the radiator and battery, repaint, then resell at the dealership. Start here if you are deciding what to buy first."
-            />
-            <div className="mt-6 grid gap-3">
-              {guideClusters.map((guide) => (
-                <Link key={guide.href} href={guide.href} className="row-link">
-                  <span>
-                    <strong>{guide.title}</strong>
-                    <small>{guide.description}</small>
-                  </span>
-                  <span aria-hidden="true">-&gt;</span>
-                </Link>
-              ))}
+      {/* ── PLAYER JOURNEY ROUTER: 4 progression stages (VV-style next-query chains) ── */}
+      {[
+        {
+          stage: "First session",
+          eyebrow: "Stage 1 · start",
+          question: "I just joined — what do I do first?",
+          answer: "Redeem codes for starting Cash, learn the auction and the repair loop, and buy your first garage slot.",
+          chain: [
+            { title: "Get free Cash with codes", href: "/codes", desc: "4 verified codes — redeem to bankroll your first bid." },
+            { title: "Beginner guide", href: "/guides", desc: "First-session bidding, repair, and the sell loop." },
+            { title: "Auction guide", href: "/auction-guide", desc: "Set a bid cap and check the condition before committing." }
+          ]
+        },
+        {
+          stage: "Grow Cash",
+          eyebrow: "Stage 2 · profit",
+          question: "How do I make money reliably?",
+          answer: "Flip cheap wrecks through the repair loop and reinvest profits into garage capacity and gamepasses.",
+          chain: [
+            { title: "Best money method", href: "/best-money-method", desc: "The poor-to-rich route and what to reinvest first." },
+            { title: "Flip calculator", href: "/calculator", desc: "Bid + repair + resale = profit. Test before you spend." },
+            { title: "Garage & upgrades", href: "/shop-upgrades", desc: "Buy capacity so it stops throttling your flips." },
+            { title: "Gamepasses", href: "/gamepasses", desc: "Which boosts actually speed the money loop." }
+          ]
+        },
+        {
+          stage: "Hunt rarer",
+          eyebrow: "Stage 3 · collect",
+          question: "Which cars are worth chasing?",
+          answer: "Supercars (570s) and legend-tier marques (Jesko) resell for the biggest margins but cost more upfront.",
+          chain: [
+            { title: "Vehicle tier list", href: "/tier-list", desc: "Which marques justify the flip effort." },
+            { title: "Full vehicle database", href: "/vehicles", desc: "9 confirmed marques with rarity and source labels." },
+            { title: "BMW M2CS build", href: "/vehicles/m2cs", desc: "Collector route where paint sets the resale." },
+            { title: "570s turbo target", href: "/vehicles/570s", desc: "The twin-turbo supercar with the highest margin." }
+          ]
+        },
+        {
+          stage: "Endgame",
+          eyebrow: "Stage 4 · optimize",
+          question: "How do I max out the loop?",
+          answer: "Rarity, turbo upgrades, and OEM paint raise resale per car — combine them on the highest-tier marques.",
+          chain: [
+            { title: "Vehicle tier list", href: "/tier-list", desc: "Rank every marque by flip value and profit risk." },
+            { title: "Rarest marque", href: "/vehicles/jesko", desc: "Legend-tier candidate for the biggest resale swing." },
+            { title: "Flip calculator", href: "/calculator", desc: "Run the highest-margin builds before committing Cash." }
+          ]
+        }
+      ].map((sr) => (
+        <section key={sr.stage} className={sr.stage === "Grow Cash" || sr.stage === "Endgame" ? "bg-white/[0.025]" : ""}>
+          <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
+            <div>
+              <span className="mini-label">{sr.eyebrow}</span>
+              <h2 className="mt-3 text-2xl font-bold text-[color:var(--accent)]">{sr.stage}</h2>
+              <p className="mt-1 text-base font-semibold text-white/80">{sr.question}</p>
+              <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">{sr.answer}</p>
             </div>
-          </div>
-          <div>
-            <SectionHeader
-              eyebrow="Discover · cars"
-              title="Which car should you chase?"
-              copy="August 2026 confirmed six marque families — Civix RK, Mercer M21, Leksoh, the M2CS, the 570s, and the BMW G80 marque. Each entry says who confirmed it and whether the numbers are reported or verified."
-            />
-            <div className="mt-6 grid gap-3">
-              {[
-                { title: "Full vehicle database", href: "/vehicles", description: "All confirmed marques with rarity and flip-value labels." },
-                { title: "Flip value calculator", href: "/calculator", description: "Auction bid + repair + resale = profit. Test any marque before you spend Cash." },
-                { title: "Auction house guide", href: "/auction-guide", description: "Bid caps and condition checks for buying wrecks cheap." }
-              ].map((c) => (
+            <div className="grid gap-3">
+              {sr.chain.map((c) => (
                 <Link key={c.href} href={c.href} className="row-link">
                   <span>
                     <strong>{c.title}</strong>
-                    <small>{c.description}</small>
+                    <small>{c.desc}</small>
                   </span>
                   <span aria-hidden="true">-&gt;</span>
                 </Link>
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
-      {/* ── OPTIMIZE: tier list + tools ── */}
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader
-          eyebrow="Optimize"
-          title="Tier list and tools to flip smarter"
-          copy="Rank marques, compare value, and run the flip calculator before you commit a bid. These decisions protect your Cash."
-        />
-        <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
-          <div className="grid gap-4 md:grid-cols-3">
+      {/* ── TOOLS ── */}
+      <section className="border-y border-white/10 bg-black/25">
+        <div className="mx-auto max-w-7xl px-4 py-12">
+          <SectionHeader
+            eyebrow="Tools"
+            title="Run the numbers before you bid"
+            copy="Decision tools protect your Cash. Use the flip calculator to estimate repair cost and resale profit on any marque."
+          />
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
             {toolCards.map((tool) => (
               <Link key={tool.href} href={tool.href} className="content-card">
                 <span className="mini-label">{tool.eyebrow}</span>
                 <h3 className="mt-3 text-xl font-bold text-white">{tool.title}</h3>
                 <p className="mt-2 text-sm text-white/65">{tool.description}</p>
-              </Link>
-            ))}
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {tierPreview.map((item) => (
-              <Link key={item.name} href="/tier-list" className="content-card">
-                <div className="flex items-center justify-between">
-                  <span className="tier-badge">{item.tier}</span>
-                  <span className="text-sm text-white/50">{item.role}</span>
-                </div>
-                <h3 className="mt-4 text-xl font-bold text-white">{item.name}</h3>
-                <p className="mt-2 text-sm text-white/65">{item.reason}</p>
               </Link>
             ))}
           </div>
