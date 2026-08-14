@@ -155,6 +155,62 @@ export default function HomePage() {
         </section>
       ))}
 
+      {/* ── DAILY FLIP ROUTINE: actionable checklist (stealanegg dwell-time lever §8) ── */}
+      <section className="border-y border-white/10 bg-black/25">
+        <div className="mx-auto max-w-7xl px-4 py-12">
+          <span className="mini-label">Daily routine</span>
+          <h2 className="mt-3 text-2xl font-bold text-white">Today&apos;s flip routine</h2>
+          <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">
+            A repeatable cash-building loop so you always have a next step — redeem, flip, reinvest, then
+            chase the parts of the game that raise per-car profit.
+          </p>
+          <ol className="mt-6 grid gap-3 sm:grid-cols-2">
+            {[
+              {
+                step: "1",
+                title: "Redeem today&apos;s codes",
+                body: "Bank first Cash with any verified codes (active list on /codes).",
+                href: "/codes"
+              },
+              {
+                step: "2",
+                title: "Flip one or two wrecks",
+                body: "Bid under your repair-adjusted cap, run the standard repair, resell.",
+                href: "/calculator"
+              },
+              {
+                step: "3",
+                title: "Reinvest into capacity",
+                body: "Add a garage slot or a money-boost gamepass so flips stop throttling.",
+                href: "/shop-upgrades"
+              },
+              {
+                step: "4",
+                title: "Hunt a target marque",
+                body: "Settle on a rarity you can win (570s / Jesko / M2CS) and build the flip plan.",
+                href: "/vehicles"
+              }
+            ].map((item) => (
+              <li key={item.step} className="content-card flex gap-4">
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 text-sm font-bold text-[color:var(--accent)]">
+                  {item.step}
+                </span>
+                <div>
+                  <Link href={item.href} className="font-semibold text-white underline-offset-4 hover:underline">
+                    {item.title}
+                  </Link>
+                  <p className="mt-1 text-sm leading-6 text-white/60">{item.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-6 text-xs text-white/40">
+            Realistic expectations: profit per flip comes from your sample run, not a guaranteed price sheet.
+            Consistent small flips beat reckless bets on legend-tier marques.
+          </p>
+        </div>
+      </section>
+
       {/* ── TOOLS ── */}
       <section className="border-y border-white/10 bg-black/25">
         <div className="mx-auto max-w-7xl px-4 py-12">
