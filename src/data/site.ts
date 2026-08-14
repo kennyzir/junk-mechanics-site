@@ -5,12 +5,12 @@ export const checkedDate = "2026-08-14";
 export const monthLabel = "August 2026";
 
 export const siteConfig: SiteConfig = {
-  name: `${gameConfig.name} Guide`,
+  name: gameConfig.name,
   domain: gameConfig.domain,
   gameName: gameConfig.name,
   description: "Junk Mechanics codes, vehicle tier list, money method, garage and repair guide, auction house notes, gamepasses, and source-backed Roblox car-flip guidance.",
   valueProposition: "Check the latest Junk Mechanics codes, compare vehicle value and flip profit, learn the best money method, and verify community sources before you spend Cash on a scrapped car.",
-  shortDisclosure: `${gameConfig.name} Guide is an unofficial fan-made resource. Roblox, the Junk Mechanics dev team, and creator-owned channels remain the source of record.`,
+  shortDisclosure: `${gameConfig.name} is an unofficial fan-made resource. Roblox, the Junk Mechanics dev team, and creator-owned channels remain the source of record.`,
   lastUpdated: checkedDate,
   freshnessLabel: "codes, vehicle tier list, money methods, and source status refreshed on August 14, 2026",
   keywords: [

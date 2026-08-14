@@ -105,7 +105,7 @@ export default function CodesPage() {
       <ClaimReviewJsonLd
         claim="Junk Mechanics has active redeemable codes as of August 2026."
         itemReviewed={{ name: siteConfig.gameName, type: "VideoGame" }}
-        author={{ name: `${siteConfig.gameName} Guide`, url: siteConfig.domain }}
+        author={{ name: siteConfig.gameName, url: siteConfig.domain }}
         datePublished={checkedDate}
         rating={{ ratingValue: 5, bestRating: 5, worstRating: 1, alternateName: "True - four active codes verified" }}
       />

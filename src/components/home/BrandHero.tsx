@@ -13,7 +13,7 @@ export function BrandHero() {
             Updated {siteConfig.lastUpdated} - {siteConfig.freshnessLabel}
           </p>
           <h1 className="max-w-[21rem] break-words text-4xl font-extrabold leading-tight text-white sm:max-w-4xl sm:text-5xl md:text-7xl">
-            {siteConfig.gameName} Wiki
+            {siteConfig.gameName}
           </h1>
           <p className="mt-5 max-w-[21rem] text-lg leading-8 text-white/82 sm:max-w-3xl sm:text-xl md:text-2xl">
             {siteConfig.valueProposition}
