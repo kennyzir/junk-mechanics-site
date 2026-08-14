@@ -99,6 +99,16 @@ export const siteConfig: SiteConfig = {
       ]
     },
     {
+      label: "Wiki",
+      href: "/wiki",
+      items: [
+        { label: "Junk Mechanics Wiki", href: "/wiki", description: "The complete, focused guide to this game — vehicles, systems, gamepasses, and source notes." },
+        { label: "Vehicles", href: "/vehicles", description: "Car families, rarity tiers, and flip profile for every confirmed marque." },
+        { label: "Tier List", href: "/tier-list", description: "Which marques are worth the flip effort and which are traps." },
+        { label: "Gamepasses", href: "/gamepasses", description: "Cash boosts, capacity, and repair-speed buys." }
+      ]
+    },
+    {
       label: "Community",
       href: "/sources",
       items: [
@@ -124,6 +134,7 @@ export const heroActions = [
   { href: "/codes", label: "Check codes" },
   { href: "/calculator", label: "Estimate flip value" },
   { href: "/tier-list", label: "Vehicle tier list" },
+  { href: "/wiki", label: "Full wiki" },
   { href: "/best-money-method", label: "Money method" }
 ] as const;
 
