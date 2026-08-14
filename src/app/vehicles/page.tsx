@@ -60,6 +60,9 @@ export default function VehiclesPage() {
         title={`${siteConfig.gameName} Vehicles & Cars`}
         description="Every Junk Mechanics car-family confirmed by August 2026 creator coverage, with marque notes, rarity labels, and repair-cost guidance. Names are creator-verified; values are labeled reported or pending."
       />
+      <div className="mt-4 border-l-2 border-[color:var(--accent)] bg-white/[0.03] px-4 py-3 text-sm text-white/70">
+        <strong className="text-white/90">Latest drop:</strong> the August 5, 2026 update added 4 vehicles (Civix RK, Mercer M21, Leksoh + 1), and creator coverage since then references <strong>5+ more new cars</strong>. This list tracks the marques confirmed with named sources; marques named only in passing wait on the claim-state label.
+      </div>
       <AdsterraArticleTop />
 
       <section className="mt-8 grid gap-4 lg:grid-cols-3">
