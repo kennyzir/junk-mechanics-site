@@ -83,10 +83,10 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
           <p className="mt-2 text-sm leading-6 text-white/66">{v.sourceNote} Confirmed by: {v.confirmedBy}.</p>
         </article>
         <article className="content-card">
-          <span className="mini-label">Tier</span>
+          <span className="mini-label">Rarity & tier</span>
           <div className="mt-3 flex items-center gap-3">
             <span className="tier-badge">{v.tier}</span>
-            <span className="text-white/70">{v.type}</span>
+            <span className="font-semibold text-white/80">{v.rarityTier}</span>
           </div>
           <p className="mt-2 text-sm leading-6 text-white/66">Ranked against the other confirmed marques by flip preference.</p>
         </article>

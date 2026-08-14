@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { checkedDate, monthLabel, siteConfig } from "@/data/site";
-import { vehicles } from "@/data/vehicles";
+import { vehicles, rarityNotes, flipEvidence } from "@/data/vehicles";
 import { BreadcrumbJsonLd, ItemListJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
@@ -118,6 +118,7 @@ export default function VehiclesPage() {
                   <span className="status-pill">{v.confidence}</span>
                 </div>
               </div>
+              <div className="mt-3 text-sm font-semibold text-[color:var(--accent)]">{v.rarityTier}</div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {v.bestFor.map((label) => (
                   <span key={label} className="mini-label">{label}</span>
@@ -128,6 +129,30 @@ export default function VehiclesPage() {
             </Link>
           ))}
         </div>
+      </section>
+
+      {/* Rarity tiers + real flip evidence (from creator content) */}
+      <section className="mt-10 grid gap-4 lg:grid-cols-2">
+        <article className="content-card">
+          <span className="mini-label">Rarity tiers</span>
+          <h2 className="mt-3 text-xl font-bold text-white">What rarity is confirmed</h2>
+          <ul className="mt-3 grid gap-2 text-sm text-white/70">
+            {rarityNotes.map((note) => (
+              <li key={note}>· {note}</li>
+            ))}
+          </ul>
+        </article>
+        <article className="content-card">
+          <span className="mini-label">Flip evidence</span>
+          <h2 className="mt-3 text-xl font-bold text-white">A real recorded flip</h2>
+          {flipEvidence.map((ev) => (
+            <div key={ev.example} className="mt-3">
+              <p className="text-base font-semibold text-white">{ev.example} <span className="status-pill ml-2">{ev.margin}</span></p>
+              <p className="mt-2 text-sm text-white/65">{ev.note}</p>
+              <p className="mt-2 text-xs text-white/50">{ev.source} · {ev.asOf}</p>
+            </div>
+          ))}
+        </article>
       </section>
 
       <section className="mt-10">

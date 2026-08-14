@@ -102,7 +102,7 @@ export const heroMetrics: HeroMetric[] = [
   { label: "Active codes", value: "4", note: "Verified from the August 12, 2026 Level Nerds roundup" },
   { label: "Roblox visits", value: "Active", note: "Cumulative visits rising; game is in active launch phase" },
   { label: "Update cadence", value: "Weekly+", note: "Aug 5 added 4 vehicles + turbos; 5+ more cars since" },
-  { label: "Car families", value: "5+", note: "Civix, Mercer, Leksoh, 570s, M2CS, G80 marque and more" }
+  { label: "Car families", value: "9", note: "Civix, Mercer, Leksoh, 570s, M2/M2CS, G80, CLK, Jesko and more" }
 ];
 
 // All four codes are verified from Level Nerds, updated August 12, 2026.
