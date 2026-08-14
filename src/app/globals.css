@@ -226,10 +226,21 @@ a {
   justify-content: center;
   gap: 0.45rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Only show a box when an ad actually rendered. Before/without creative,
+     keep it transparent so pages don't show opaque "ADVERTISEMENT" boxes. */
+  border: 1px solid transparent;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.03);
+  background: transparent;
   padding: 0.75rem;
+}
+
+.ad-shell:has(iframe, ins.responsive, a, img, .ad-host > iframe) {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ad-shell .ad-label:empty {
+  display: none;
 }
 
 .ad-label {

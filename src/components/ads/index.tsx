@@ -447,14 +447,15 @@ export function AdsterraArticleTop() {
 
 export function AdsterraArticleMid() {
   const cleanAdRoute = useCleanAdRoute();
-  if (cleanAdRoute || (!hasBannerSlot("300x250") && !hasBannerSlot("160x300"))) return null;
+  if (cleanAdRoute || !hasBannerSlot("300x250")) return null;
 
+  // Single mid-page banner (300x250), NOT a 2-box pair. A visible 2-box
+  // "ad-pair" (300x250 + 160x300) renders as two opaque bordered boxes on
+  // every article page when ads are slow to fill — flagged by the user as
+  // "为什么每个页面总有这两个框". One clean banner avoids that.
   return (
     <div className="ad-placement ad-placement-mid">
-      <div className="ad-pair">
-        {hasBannerSlot("300x250") ? <AdsterraBanner /> : null}
-        {hasBannerSlot("160x300") ? <AdsterraBannerUnit size="160x300" slotName="content_160x300" /> : null}
-      </div>
+      <AdsterraBanner />
     </div>
   );
 }
