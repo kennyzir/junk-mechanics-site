@@ -11,15 +11,19 @@ export const monthLabel = "August 2026";
 // `alternates.languages` (they don't merge), so the languages map MUST be
 // declared on the page, not just the root layout.
 // PHANTOM-HREFLANG GUARD (pilot finding 2026-08-15): do NOT emit hreflang to a
-// locale URL that doesn't exist yet. Right now only `/es` (homepage) exists;
-// `/es/codes` etc. are NOT built, so pointing EN pages' es-hreflang at
-// `/es/${path}` would 404 (scanned as phantom hreflang). For the pilot, es
-// resolves to `/es` only. Expand the map as each `/xx/...` page is built.
+// locale URL that doesn't exist. `/es` pages live under /es/<path> mirroring
+// the EN tree; a `/es/...` page must exist before we point es-hreflang at it.
+// This map is now expanded because /es/codes, /es/vehicles, /es/vehicles/[slug]
+// exist (2026-08-15 build). Keep it in sync: only add a path once its /es page
+// is built. x-default/self-referencing must resolve to a real page.
 export function langAlternates(pathname: string) {
   const base = siteConfig.domain;
   const clean = pathname.replace(/^\/+|\/+$/g, "");
   const self = clean ? `${base}/${clean}` : base;
-  const esTarget = `${base}/es`; // pilot: /es homepage only, expand as /es/... pages are built
+  // If this page is itself already a locale page (path starts with /es), its es
+  // alternate is self-referencing — do NOT prepend /es again (would double it).
+  const isEsPage = /^es(?:\/|$)/.test(clean);
+  const esTarget = isEsPage ? self : `${base}/es${clean ? `/${clean}` : ""}`;
   return {
     canonical: self,
     languages: {
