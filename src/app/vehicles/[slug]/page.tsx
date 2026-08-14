@@ -73,6 +73,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
           <Link className="button-primary" href="/calculator">Check flip value</Link>
           <Link className="button-secondary" href={`/vehicles/${v.slug}/how-to-get`}>How to get it</Link>
           <Link className="button-secondary" href={`/vehicles/${v.slug}/best`}>Is it worth it?</Link>
+          <Link className="button-secondary" href={`/vehicles/${v.slug}/rarities`}>How rare?</Link>
         </div>
       </PageIntro>
       <AdsterraArticleTop />

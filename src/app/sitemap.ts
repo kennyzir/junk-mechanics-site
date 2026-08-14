@@ -42,9 +42,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.78
     })),
-    // Per-vehicle intent variants (how-to-get / best)
+    // Per-vehicle intent variants (how-to-get / best / rarities)
     ...vehicleSlugs.flatMap((slug) =>
-      (["how-to-get", "best"] as const).map((intent) => ({
+      (["how-to-get", "best", "rarities"] as const).map((intent) => ({
         path: `/vehicles/${slug}/${intent}`,
         changeFrequency: "weekly" as const,
         priority: 0.74

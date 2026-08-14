@@ -7,7 +7,7 @@ import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
 
-const INTENTS = ["how-to-get", "best"] as const;
+const INTENTS = ["how-to-get", "best", "rarities"] as const;
 type Intent = (typeof INTENTS)[number];
 
 // Per-intent semantic config. Content is derived from the marque's real
@@ -27,6 +27,12 @@ const intentCopy: Record<
     titleQ: (name) => `Is the ${name} worth it?`,
     meta: (name) =>
       `Is the ${name} in ${siteConfig.gameName} worth chasing? Rarity, flip value, repair cost, and resale signal — with honest claim labels.`,
+  },
+  rarities: {
+    label: "Rarities",
+    titleQ: (name) => `How rare is the ${name}?`,
+    meta: (name) =>
+      `How rare is the ${name} in ${siteConfig.gameName}? Rarity tier, flip ranking, and which exact odds are unknown vs community-reported.`,
   },
 };
 
@@ -82,20 +88,24 @@ export default async function VehicleIntentPage({
       <FaqJsonLd
         items={[
           {
-            q: intent === "how-to-get" ? `How do I get the ${v.name} in ${siteConfig.gameName}?` : `Is the ${v.name} worth it in ${siteConfig.gameName}?`,
+            q: intent === "how-to-get" ? `How do I get the ${v.name} in ${siteConfig.gameName}?` : intent === "best" ? `Is the ${v.name} worth it in ${siteConfig.gameName}?` : `How rare is the ${v.name} in ${siteConfig.gameName}?`,
             a:
               intent === "how-to-get"
                 ? `Wreck-drop it or win it at the auction house, then repair it through the standard loop. ${v.flipProfile}`
-                : `${v.flipProfile} ${v.rarityTier}. This site labels the marque ${v.confidence.toLocaleLowerCase()}.`,
+                : intent === "best"
+                  ? `${v.flipProfile} ${v.rarityTier}. This site labels the marque ${v.confidence.toLocaleLowerCase()}.`
+                  : `${v.rarityTier} — ranked ${v.tier} tier for flip preference. Exact rarity odds are not dev-published; this page labels rarity ${v.confidence.toLocaleLowerCase()} (${v.confirmedBy}).`,
           },
           {
-            q: intent === "how-to-get" ? `What does the ${v.name} need to resell?` : `What is the ${v.name} tier?`,
+            q: intent === "how-to-get" ? `What does the ${v.name} need to resell?` : intent === "best" ? `What is the ${v.name} tier?` : `Which exact ${v.name} odds are verified?`,
             a:
               intent === "how-to-get"
                 ? `${v.sourceNote} Radiator, battery, and paint are the standard prep; a correct OEM color or a turbo (on ${
                     v.slug === "570s" ? "the 570s" : v.name
                   }) can add value where stated.`
-                : `The ${v.name} ranks at ${v.tier} tier — ${v.rarityTier}. Best for: ${v.bestFor.join(", ")}.`,
+                : intent === "best"
+                  ? `The ${v.name} ranks at ${v.tier} tier — ${v.rarityTier}. Best for: ${v.bestFor.join(", ")}.`
+                  : `Presence, type, and rarity-tier label are confirmed. Exact drop-rate percentages and price odds are not developer-published and are NOT presented as fact on this page.`,
           },
         ]}
       />
@@ -143,7 +153,7 @@ export default async function VehicleIntentPage({
             </ul>
           </article>
         </section>
-      ) : (
+      ) : intent === "best" ? (
         <section className="mt-8 grid gap-4 lg:grid-cols-3">
           <article className="content-card">
             <span className="mini-label">Tier</span>
@@ -160,6 +170,27 @@ export default async function VehicleIntentPage({
             <p className="mt-3 text-sm leading-6 text-white/66">
               <strong className="text-white">Best for:</strong> {v.bestFor.join(", ")}. Worth chasing if you can win it under your
               repair-adjusted bid cap — treat the exact price as {v.confidence.toLocaleLowerCase()}.
+            </p>
+          </article>
+        </section>
+      ) : (
+        <section className="mt-8 grid gap-4 lg:grid-cols-3">
+          <article className="content-card">
+            <span className="mini-label">Rarity tier</span>
+            <div className="mt-3 flex items-center gap-3">
+              <span className="tier-badge">{v.tier}</span>
+              <span className="font-semibold text-white/80">{v.rarityTier}</span>
+            </div>
+            <p className="mt-2 text-sm leading-6 text-white/66">This site labels the {v.name} as {v.confidence.toLocaleLowerCase()}, confirmed by {v.confirmedBy}.</p>
+          </article>
+          <article className="content-card lg:col-span-2">
+            <span className="mini-label">What is honest to say</span>
+            <h2 className="mt-3 text-xl font-bold text-white">{v.name} rarity — ranked, not invented odds</h2>
+            <p className="mt-3 text-sm leading-6 text-white/70">
+              The {v.name} is {v.rarityTier.toLocaleLowerCase()} ({v.type.toLocaleLowerCase()}) and is confirmed by {v.confirmedBy}.
+              Its exact drop-rate and spawn percentages are <strong className="text-white">not developer-published</strong>, so this page
+              does not present fabricated odds. What we can rank is the marque&apos;s rarity tier and flip preference — that comes from
+              creator coverage, not invented math.
             </p>
           </article>
         </section>
