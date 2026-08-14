@@ -279,6 +279,17 @@ a {
   margin-block: 2rem;
 }
 
+/* Collapse an ad slot to ZERO height + margin when it contains no rendered
+   creative. Otherwise an empty slot leaves a ~2rem + 90px vertical hole on
+   every page (user: "看不到框,但间距太大"). With a rendered ad (iframe/ins/a/img),
+   the normal spacing returns. */
+.ad-placement:not(:has(iframe, ins, a, img)) {
+  height: 0;
+  min-height: 0;
+  margin-block: 0;
+  overflow: hidden;
+}
+
 .ad-placement-mid {
   margin-block: 2.25rem;
 }
