@@ -10,8 +10,7 @@ import {
   siteConfig,
   tierPreview,
   toolCards,
-  videoGuides,
-  wikiCards
+  videoGuides
 } from "@/data/site";
 import { FaqJsonLd, SoftwareApplicationJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { SectionHeader, TrustNote } from "@/components/ui/content";
@@ -19,11 +18,11 @@ import { BrandHero } from "@/components/home/BrandHero";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.gameName} Wiki, Codes, Tier List and Tools`,
+  title: `${siteConfig.gameName} Codes, Cars, Tier List & Money Method`,
   description: siteConfig.description,
   alternates: { canonical: siteConfig.domain },
   openGraph: {
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Cars, Tier List & Money Method`,
     description: siteConfig.description,
     url: siteConfig.domain,
     type: "website",
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.gameName} Wiki, Codes and Tools`,
+    title: `${siteConfig.gameName} Codes, Cars, Tier List & Money Method`,
     description: siteConfig.description,
     images: ["/opengraph-image"]
   }
@@ -59,12 +58,13 @@ export default function HomePage() {
       </section>
       <AdsterraArticleTop />
 
+      {/* ── FRESH: codes first — the highest-repeat intent ── */}
       <section className="mx-auto max-w-7xl px-4 py-12">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <SectionHeader
-            eyebrow="Freshness center"
-            title={`${siteConfig.gameName} codes and update status`}
-            copy="Codes are the highest-repeat Roblox search intent, so the homepage surfaces the latest verified set and sends players into the dedicated codes page."
+            eyebrow="Fresh · verified"
+            title="Active Junk Mechanics codes"
+            copy="Codes drive the most repeat search traffic and expire fast, so the homepage leads with the latest verified set. Each code lists a confirmed source and reward."
           />
           <Link className="button-secondary" href="/codes">
             View all codes
@@ -85,13 +85,69 @@ export default function HomePage() {
       </section>
       <AdsterraArticleMid />
 
+      {/* ── LEARN: new player questions first ── */}
       <section className="bg-white/[0.025]">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-[0.9fr_1.1fr]">
-          <SectionHeader
-            eyebrow="Tier preview"
-            title={`${siteConfig.gameName} tier list preview`}
-            copy="Start with the strongest current picks, then use the full tier list when you need ranking notes, substitutes, and update dates."
-          />
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
+          <div>
+            <SectionHeader
+              eyebrow="Learn · new players"
+              title="New to Junk Mechanics?"
+              copy="Junk Mechanics is an auction-to-dealership economy: bid on wrecks, repair the radiator and battery, repaint, then resell at the dealership. Start here if you are deciding what to buy first."
+            />
+            <div className="mt-6 grid gap-3">
+              {guideClusters.map((guide) => (
+                <Link key={guide.href} href={guide.href} className="row-link">
+                  <span>
+                    <strong>{guide.title}</strong>
+                    <small>{guide.description}</small>
+                  </span>
+                  <span aria-hidden="true">-&gt;</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div>
+            <SectionHeader
+              eyebrow="Discover · cars"
+              title="Which car should you chase?"
+              copy="August 2026 confirmed six marque families — Civix RK, Mercer M21, Leksoh, the M2CS, the 570s, and the BMW G80 marque. Each entry says who confirmed it and whether the numbers are reported or verified."
+            />
+            <div className="mt-6 grid gap-3">
+              {[
+                { title: "Full vehicle database", href: "/vehicles", description: "All confirmed marques with rarity and flip-value labels." },
+                { title: "Flip value calculator", href: "/calculator", description: "Auction bid + repair + resale = profit. Test any marque before you spend Cash." },
+                { title: "Auction house guide", href: "/auction-guide", description: "Bid caps and condition checks for buying wrecks cheap." }
+              ].map((c) => (
+                <Link key={c.href} href={c.href} className="row-link">
+                  <span>
+                    <strong>{c.title}</strong>
+                    <small>{c.description}</small>
+                  </span>
+                  <span aria-hidden="true">-&gt;</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── OPTIMIZE: tier list + tools ── */}
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <SectionHeader
+          eyebrow="Optimize"
+          title="Tier list and tools to flip smarter"
+          copy="Rank marques, compare value, and run the flip calculator before you commit a bid. These decisions protect your Cash."
+        />
+        <div className="mt-6 grid gap-4 lg:grid-cols-[1fr_1.1fr]">
+          <div className="grid gap-4 md:grid-cols-3">
+            {toolCards.map((tool) => (
+              <Link key={tool.href} href={tool.href} className="content-card">
+                <span className="mini-label">{tool.eyebrow}</span>
+                <h3 className="mt-3 text-xl font-bold text-white">{tool.title}</h3>
+                <p className="mt-2 text-sm text-white/65">{tool.description}</p>
+              </Link>
+            ))}
+          </div>
           <div className="grid gap-4 md:grid-cols-3">
             {tierPreview.map((item) => (
               <Link key={item.name} href="/tier-list" className="content-card">
@@ -108,114 +164,58 @@ export default function HomePage() {
       </section>
       <AdsterraArticleBottom />
 
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader
-          eyebrow="Core tools"
-          title="Tools players can use immediately"
-          copy="Start with codes, tier list, calculator, and source checks before spending rare resources or committing to a build."
-        />
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {toolCards.map((tool) => (
-            <Link key={tool.href} href={tool.href} className="content-card">
-              <span className="mini-label">{tool.eyebrow}</span>
-              <h3 className="mt-3 text-xl font-bold text-white">{tool.title}</h3>
-              <p className="mt-2 text-sm text-white/65">{tool.description}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
+      {/* ── SOURCES: trust / EEAT ── */}
       <section className="bg-black/25">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
-          <div>
-            <SectionHeader
-              eyebrow="Guides"
-              title="Pick the next problem to solve"
-              copy="Use these guides when you need beginner advice, safer upgrade choices, farming routes, or advanced strategy."
-            />
-            <div className="mt-6 grid gap-3">
-              {guideClusters.map((guide) => (
-                <Link key={guide.href} href={guide.href} className="row-link">
-                  <span>
-                    <strong>{guide.title}</strong>
-                    <small>{guide.description}</small>
-                  </span>
-                  <span aria-hidden="true">-&gt;</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div>
-            <SectionHeader
-              eyebrow="Game systems"
-              title="Understand the car-flip loop before you spend Cash"
-              copy="Junk Mechanics is an auction-to-dealership economy: bid on wrecks, repair radiators and batteries, repaint, then resell at the dealership. These pages cover the car families, gamepasses, and the fastest route to grow your garage."
-            />
-            <div className="mt-6 grid gap-3">
-              {wikiCards.map((item) => (
-                <Link key={item.href} href={item.href} className="row-link">
-                  <span>
-                    <strong>{item.title}</strong>
-                    <small>{item.description}</small>
-                  </span>
-                  <span aria-hidden="true">-&gt;</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-12">
-        <SectionHeader
-          eyebrow="Source check"
-          title="Official and community sources"
-          copy="Use these links and notes to see what is official, what is community reported, and what still needs checking."
-        />
-        <div className="mt-6 grid gap-4 lg:grid-cols-3">
-          {officialLinks.map((link) => {
-            const content = (
-              <>
-                <span className="mini-label">{link.eyebrow}</span>
-                <h3 className="mt-3 text-lg font-bold text-white">{link.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{link.description}</p>
-              </>
-            );
-
-            return link.href.startsWith("/") ? (
-              <Link key={link.href} href={link.href} className="content-card">
-                {content}
-              </Link>
-            ) : (
-              <a key={link.href} href={link.href} className="content-card" target="_blank" rel="noreferrer">
-                {content}
-              </a>
-            );
-          })}
-        </div>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
-          {editorialSignals.map((signal) => (
-            <TrustNote key={signal.title} title={signal.title} body={signal.body} />
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-white/[0.025]">
         <div className="mx-auto max-w-7xl px-4 py-12">
           <SectionHeader
-            eyebrow="Community research"
-            title="Video and creator references"
-            copy="Recent creator videos help players understand gameplay, updates, quest routes, rankings, and strategy. Treat videos as supporting references, not official patch notes."
+            eyebrow="Trust & sources"
+            title="Official and community sources"
+            copy="Every claim on this site carries a source and a claim-state label. Use these links and notes to see what is official, what is community-reported, and what still needs checking."
           />
-          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {videoGuides.map((video) => (
-              <a key={video.href} href={video.href} className="content-card" target="_blank" rel="noreferrer">
-                <span className="mini-label">{video.source ?? video.eyebrow}</span>
-                <h3 className="mt-3 text-lg font-bold text-white">{video.title}</h3>
-                <p className="mt-2 text-sm text-white/65">{video.description}</p>
-              </a>
+          <div className="mt-6 grid gap-4 lg:grid-cols-3">
+            {officialLinks.map((link) => {
+              const content = (
+                <>
+                  <span className="mini-label">{link.eyebrow}</span>
+                  <h3 className="mt-3 text-lg font-bold text-white">{link.title}</h3>
+                  <p className="mt-2 text-sm text-white/65">{link.description}</p>
+                </>
+              );
+
+              return link.href.startsWith("/") ? (
+                <Link key={link.href} href={link.href} className="content-card">
+                  {content}
+                </Link>
+              ) : (
+                <a key={link.href} href={link.href} className="content-card" target="_blank" rel="noreferrer">
+                  {content}
+                </a>
+              );
+            })}
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {editorialSignals.map((signal) => (
+              <TrustNote key={signal.title} title={signal.title} body={signal.body} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── CREATOR RESEARCH: experience / E-E-A-T support ── */}
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <SectionHeader
+          eyebrow="Community research"
+          title="Video and creator references"
+          copy="Recent creator videos help players understand the game loop, updates, and strategy. Treat videos as supporting references, not official patch notes."
+        />
+        <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {videoGuides.map((video) => (
+            <a key={video.href} href={video.href} className="content-card" target="_blank" rel="noreferrer">
+              <span className="mini-label">{video.source ?? video.eyebrow}</span>
+              <h3 className="mt-3 text-lg font-bold text-white">{video.title}</h3>
+              <p className="mt-2 text-sm text-white/65">{video.description}</p>
+            </a>
+          ))}
         </div>
       </section>
 

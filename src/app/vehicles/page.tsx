@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { checkedDate, monthLabel, siteConfig } from "@/data/site";
+import { vehicles } from "@/data/vehicles";
 import { BreadcrumbJsonLd, ItemListJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
@@ -22,66 +23,6 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"]
   }
 };
-
-// Vehicle names/mechanics are confirmed from August 2026 creator video titles and
-// descriptions. Exact prices, rarity odds, and repair costs remain community-reported
-// until a creator-owned source or a live in-game test publishes tables.
-const vehicles = [
-  {
-    name: "Civix RK",
-    type: "Marque / class-leading sport",
-    tier: "A",
-    confidence: "Reported",
-    confirmedBy: "Named in the August 5, 2026 '4 NEW VEHICLES' update coverage (Berlian kecil)",
-    notes: "Presented as a sought-after marque in the August 2026 vehicle drop. Auction value and repair cost are community-derived; exact rarity is not creator-official.",
-    bestFor: ["high-value flips", "rarity hunting"]
-  },
-  {
-    name: "Mercer M21",
-    type: "Mid-band sport",
-    tier: "B",
-    confidence: "Reported",
-    confirmedBy: "Named in the same August 5, 2026 '4 NEW VEHICLES' update coverage",
-    notes: "Sits below the marquee cars on value but can hold a healthy flip margin when parts are cheap. A solid way to test the auction-to-dealership loop.",
-    bestFor: ["mid-tier flips", "route testing"]
-  },
-  {
-    name: "M2CS",
-    type: "Collector / build car",
-    tier: "A",
-    confidence: "Reported",
-    confirmedBy: "\"I built a FAKE M2CS in Junk Mechanics.. 💀🔥\" creator video (Avinestas channel)",
-    notes: "Players build out M2CS-style builds, suggesting strong demand for this marque. Repair/build cost is community-derived.",
-    bestFor: ["collector builds", "custom paints"]
-  },
-  {
-    name: "570s",
-    type: "Supercar / turbo target",
-    tier: "A",
-    confidence: "Reported",
-    confirmedBy: "\"I threw on a Twin Turbo kit on my 570s in Junk Mechanics.. 👀🔥\" creator video",
-    notes: "A 570s supercar-family model is confirmed in the game, and it is one of the cars creators twin-turbo. Confirms the turbo upgrade system and supercar marque. Resale highly community-derived.",
-    bestFor: ["turbo builds", "high-margin flips"]
-  },
-  {
-    name: "BMW G80 (OEM)",
-    type: "Collector / OEM paint",
-    tier: "A",
-    confidence: "Reported",
-    confirmedBy: "OEM BMW G80 color-code Shorts show active interest in precise OEM paint matching",
-    notes: "Treated as a collector marque with steady resale demand, especially when the paint matches a correct OEM color code. Paint quality directly raises resale.",
-    bestFor: ["collector builds", "color-code content"]
-  },
-  {
-    name: "Leksoh",
-    type: "Marque (unverified role)",
-    tier: "B",
-    confidence: "Pending",
-    confirmedBy: "Named in the August 2026 '4 NEW VEHICLES' coverage alongside Civix RK and Mercer M21",
-    notes: "Presence is confirmed but the exact role, rarity, and value are not yet established in public coverage. Treat numbers as pending until a creator source expands on it.",
-    bestFor: ["mid-tier flips", "collection filling"]
-  }
-];
 
 const faqItems = [
   {
@@ -158,7 +99,12 @@ export default function VehiclesPage() {
         />
         <div className="mt-6 grid gap-4" id="vehicle-list">
           {vehicles.map((v) => (
-            <article key={v.name} id={`vehicle-${v.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`} className="content-card">
+            <Link
+              key={v.slug}
+              href={`/vehicles/${v.slug}`}
+              id={`vehicle-${v.slug}`}
+              className="content-card transition hover:border-[color:var(--accent)]"
+            >
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <h2 className="text-2xl font-extrabold text-white">{v.name} <span className="text-sm font-semibold text-white/50">· {v.type}</span></h2>
@@ -174,8 +120,9 @@ export default function VehiclesPage() {
                   <span key={label} className="mini-label">{label}</span>
                 ))}
               </div>
-              <p className="mt-4 max-w-4xl text-white/68">{v.notes}</p>
-            </article>
+              <p className="mt-4 max-w-4xl text-white/68">{v.description}</p>
+              <span className="mt-4 inline-block text-sm font-bold text-[color:var(--accent)]">View {v.name} guide -&gt;</span>
+            </Link>
           ))}
         </div>
       </section>

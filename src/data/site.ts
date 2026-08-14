@@ -49,34 +49,40 @@ export const siteConfig: SiteConfig = {
       ]
     },
     {
-      label: "Tier List",
-      href: "/tier-list",
+      label: "Beginner",
+      href: "/guides",
       items: [
-        { label: "Vehicle Tier List", href: "/tier-list", description: "Which cars are worth the flip effort and which are traps." },
-        { label: "Flip Value Calculator", href: "/calculator", description: "Estimate repair cost and resale profit for a junked car." },
-        { label: "Best Money Method", href: "/best-money-method", description: "Auction discipline, repair route value, and upgrade tradeoffs." },
-        { label: "Auction Guide", href: "/auction-guide", description: "Bidding, car condition checks, and profit-loop notes." },
-        { label: "Garage & Upgrades", href: "/shop-upgrades", description: "Garages, selling space, tool upgrades, and bottlenecks." }
+        { label: "Beginner Guide", href: "/guides", description: "First-session bidding, the repair loop, and the auction-to-dealership flip route." },
+        { label: "How to Make Money", href: "/best-money-method", description: "The poor-to-rich route and what to reinvest in first." },
+        { label: "Auction Guide", href: "/auction-guide", description: "Bid caps, condition checks, and when to walk away from a wreck." },
+        { label: "Garage & Upgrades", href: "/shop-upgrades", description: "What to buy first so capacity stops throttling your flips." }
       ]
     },
     {
-      label: "Wiki",
-      href: "/wiki",
+      label: "Cars",
+      href: "/vehicles",
       items: [
-        { label: "Wiki Hub", href: "/wiki", description: "Cars, garages, repairs, turbos, gamepasses, and systems." },
-        { label: "Vehicles", href: "/vehicles", description: "Civix RK, Mercer M21, Leksoh, and more car-families." },
-        { label: "Gamepasses", href: "/gamepasses", description: "Buying boost, garage slots, and upgrade value." },
-        { label: "Guides", href: "/guides", description: "Beginner, repair, auction, and money-method guides." },
-        { label: "Discord", href: "/discord", description: "Public server invite status and source-use boundaries." },
-        { label: "Trello/Discord", href: "/trello", description: "Official board, Discord, and wiki status." },
-        { label: "Repair Guide", href: "/guides", description: "Radiator, battery, paint, and dealership flip steps." }
+        { label: "Vehicle List", href: "/vehicles", description: "Civix RK, Mercer M21, Leksoh, the M2CS, the 570s, and the BMW G80 marque." },
+        { label: "Tier List", href: "/tier-list", description: "Which marques are worth the flip effort and which are traps." },
+        { label: "Gamepasses", href: "/gamepasses", description: "Cash boosts, capacity, and repair-speed buys." },
+        { label: "Flip Calculator", href: "/calculator", description: "Estimate repair cost and resale profit before you bid." }
+      ]
+    },
+    {
+      label: "Community",
+      href: "/sources",
+      items: [
+        { label: "Sources", href: "/sources", description: "Official, community, and pending source-status checks." },
+        { label: "Discord", href: "/discord", description: "How to find the official server and where codes get announced." },
+        { label: "Trello & Wiki", href: "/trello", description: "Which community sources are official vs still unverified." },
+        { label: "Updates", href: "/wiki", description: "August 2026 vehicle, turbo, and paint systems." }
       ]
     },
     {
       label: "About",
       href: "/disclosure",
       items: [
-        { label: "Disclosure", href: "/disclosure", description: "Fan-made status and source notes." },
+        { label: "Disclosure", href: "/disclosure", description: "Fan-made status and claim-state policy." },
         { label: "Contact", href: "/contact", description: "Corrections and editorial contact path." },
         { label: "Privacy", href: "/privacy", description: "Privacy and ad disclosure." }
       ]

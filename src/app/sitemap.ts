@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { checkedDate, siteConfig } from "@/data/site";
-import { topicClusterRoutes } from "@/data/topic-clusters";
+import { vehicleSlugs } from "@/data/vehicles";
 
 export const dynamic = "force-static";
 
@@ -12,11 +12,16 @@ const routes: Array<{
   { path: "", changeFrequency: "daily", priority: 1 },
   { path: "/codes", changeFrequency: "daily", priority: 0.95 },
   { path: "/tier-list", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/trello", changeFrequency: "weekly", priority: 0.72 },
+  { path: "/vehicles", changeFrequency: "weekly", priority: 0.9 },
   { path: "/calculator", changeFrequency: "weekly", priority: 0.85 },
-  { path: "/mutation-value-calculator", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/best-money-method", changeFrequency: "weekly", priority: 0.85 },
+  { path: "/auction-guide", changeFrequency: "weekly", priority: 0.82 },
   { path: "/guides", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/gamepasses", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/shop-upgrades", changeFrequency: "weekly", priority: 0.8 },
   { path: "/wiki", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/discord", changeFrequency: "weekly", priority: 0.7 },
+  { path: "/trello", changeFrequency: "weekly", priority: 0.7 },
   { path: "/sources", changeFrequency: "monthly", priority: 0.5 },
   { path: "/about", changeFrequency: "monthly", priority: 0.3 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.3 },
@@ -28,10 +33,12 @@ const routes: Array<{
 export default function sitemap(): MetadataRoute.Sitemap {
   const seen = new Set<string>();
   const lastModified = new Date(`${checkedDate}T00:00:00.000Z`);
+
   const allRoutes = [
     ...routes,
-    ...topicClusterRoutes.map((path) => ({
-      path,
+    // Per-vehicle entity pages (Spoke model)
+    ...vehicleSlugs.map((slug) => ({
+      path: `/vehicles/${slug}`,
       changeFrequency: "weekly" as const,
       priority: 0.78
     }))
