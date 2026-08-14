@@ -121,7 +121,7 @@ export default function MoneyMethodPage() {
             <span className="mini-label">Step 4</span>
             <h2 className="mt-3 text-xl font-bold text-white">Scale with confirmed marques</h2>
             <p className="mt-2 text-sm leading-6 text-white/66">
-              As Cash grows, move up to high-value marques like the 570s or collector builds. Verify each marque's
+              As Cash grows, move up to high-value marques like the 570s or collector builds. Verify each marque&apos;s
               offset with the calculator before spending a big bid.
             </p>
           </article>

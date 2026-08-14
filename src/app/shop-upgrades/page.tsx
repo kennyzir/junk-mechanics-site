@@ -61,7 +61,7 @@ export default function ShopUpgradesPage() {
           <span className="mini-label">What exists</span>
           <h2 className="mt-3 text-xl font-bold text-white">Garage progression is confirmed</h2>
           <p className="mt-2 text-sm leading-6 text-white/66">
-            A creator ran a full "I bought EVERY garage" progression, confirming garages are a core Cash sink and
+            A creator ran a full &quot;I bought EVERY garage&quot; progression, confirming garages are a core Cash sink and
             capacity lever. Buying the right garage at the right time is a real decision, not a decoration.
           </p>
         </article>
@@ -119,7 +119,7 @@ export default function ShopUpgradesPage() {
             <span className="mini-label">Buy order</span>
             <h2 className="mt-3 text-xl font-bold text-white">Avoid buying ahead of need</h2>
             <p className="mt-2 text-sm leading-6 text-white/66">
-              Creator progression buys garages in order, but each one only "pays for itself" once the previous
+              Creator progression buys garages in order, but each one only &quot;pays for itself&quot; once the previous
               limit is actually constraining you. Buying ahead ties up Cash you could be flipping with.
             </p>
           </article>

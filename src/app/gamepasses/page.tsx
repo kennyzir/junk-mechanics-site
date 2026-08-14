@@ -61,7 +61,7 @@ export default function GamepassesPage() {
           <span className="mini-label">What exists</span>
           <h2 className="mt-3 text-xl font-bold text-white">Gamepasses are real and tested</h2>
           <p className="mt-2 text-sm leading-6 text-white/66">
-            A creator ran a dedicated "I tested EVERY Gamepass on Junk Mechanics" video, confirming the game
+            A creator ran a dedicated &quot;I tested EVERY Gamepass on Junk Mechanics&quot; video, confirming the game
             ships gamepasses that affect the money-making loop. Their financial impact is part of every
             serious poor-to-rich route.
           </p>

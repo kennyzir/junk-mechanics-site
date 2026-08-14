@@ -112,7 +112,7 @@ export default function DiscordPage() {
             <span className="mini-label">3. Invite hug</span>
             <h2 className="mt-3 text-xl font-bold text-white">Beware expired and fake invites</h2>
             <p className="mt-2 text-sm leading-6 text-white/66">
-              Invites expire and are re-shared by trolls. If a link does not resolve to the creator's server, treat
+              Invites expire and are re-shared by trolls. If a link does not resolve to the creator&apos;s server, treat
               any code on it as suspect.
             </p>
           </article>
