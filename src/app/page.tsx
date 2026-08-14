@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { vehicleSlugs, getVehicle } from "@/data/vehicles";
 import {
   activeCodes,
   editorialSignals,
@@ -208,6 +209,54 @@ export default function HomePage() {
             Realistic expectations: profit per flip comes from your sample run, not a guaranteed price sheet.
             Consistent small flips beat reckless bets on legend-tier marques.
           </p>
+        </div>
+      </section>
+
+      {/* ── GARAGE COMPARISON TABLE: scannable + funnels into /vehicles (stealanegg §3,§8) ── */}
+      <section className="mx-auto max-w-7xl px-4 py-12">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <span className="mini-label">Garage DB</span>
+            <h2 className="mt-3 text-2xl font-bold text-white">Every confirmed garage marque</h2>
+            <p className="mt-2 max-w-xl text-sm leading-6 text-white/65">
+              Rank rarity and flip preference at a glance. Click a marque to open its full database page and
+              the how-to-get / worth-it / how-rare guides.
+            </p>
+          </div>
+          <Link href="/vehicles" className="button-secondary">Full vehicle database →</Link>
+        </div>
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[560px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-white/10 text-left text-xs uppercase tracking-wide text-white/45">
+                <th className="py-3 pr-4 font-semibold">Marque</th>
+                <th className="py-3 px-4 font-semibold">Type</th>
+                <th className="py-3 px-4 font-semibold">Rarity tier</th>
+                <th className="py-3 px-4 font-semibold">Flip</th>
+              </tr>
+            </thead>
+            <tbody>
+              {vehicleSlugs.map((slug) => {
+                const c = getVehicle(slug);
+                if (!c) return null;
+                return (
+                  <tr key={c.slug} className="border-b border-white/5 hover:bg-white/[0.02]">
+                    <td className="py-3 pr-4">
+                      <Link
+                        href={`/vehicles/${c.slug}`}
+                        className="font-semibold text-white hover:text-[color:var(--accent)]"
+                      >
+                        {c.name}
+                      </Link>
+                    </td>
+                    <td className="py-3 px-4 text-white/70">{c.type}</td>
+                    <td className="py-3 px-4 text-white/70">{c.rarityTier}</td>
+                    <td className="py-3 px-4"><span className="tier-badge">{c.tier}</span></td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       </section>
 

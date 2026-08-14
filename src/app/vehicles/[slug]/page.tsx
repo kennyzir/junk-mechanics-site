@@ -7,6 +7,10 @@ import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
 
+const compareAll = vehicleSlugs
+  .map((slug) => getVehicle(slug))
+  .filter((v): v is NonNullable<typeof v> => Boolean(v));
+
 export function generateStaticParams() {
   return vehicleSlugs.map((slug) => ({ slug }));
 }
@@ -159,6 +163,54 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
             <p className="mt-2 text-sm text-white/66">Which marques feed the best poor-to-rich flip route.</p>
           </Link>
         </div>
+      </section>
+
+      <section className="mt-10">
+        <SectionHeader
+          eyebrow="Garage comparison"
+          title={`${v.name} vs the rest of the garage`}
+          copy="Scan every confirmed marque against this one — type, rarity tier and flip ranking. Click any row to open that marque&apos;s full page and keep exploring."
+        />
+        <div className="mt-6 overflow-x-auto">
+          <table className="w-full min-w-[640px] border-collapse text-sm">
+            <thead>
+              <tr className="border-b border-white/10 text-left text-xs uppercase tracking-wide text-white/45">
+                <th className="py-3 pr-4 font-semibold">Marque</th>
+                <th className="py-3 px-4 font-semibold">Type</th>
+                <th className="py-3 px-4 font-semibold">Rarity tier</th>
+                <th className="py-3 px-4 font-semibold">Flip</th>
+              </tr>
+            </thead>
+            <tbody>
+              {compareAll.map((c) => (
+                <tr
+                  key={c.slug}
+                  className={`border-b border-white/5 ${
+                    c.slug === v.slug ? "bg-white/[0.04]" : "hover:bg-white/[0.02]"
+                  }`}
+                >
+                  <td className="py-3 pr-4">
+                    <Link
+                      href={`/vehicles/${c.slug}`}
+                      className={`inline-flex items-baseline gap-2 font-semibold ${
+                        c.slug === v.slug ? "text-[color:var(--accent)]" : "text-white hover:text-[color:var(--accent)]"
+                      }`}
+                    >
+                      {c.name} {c.slug === v.slug && <span className="text-xs text-white/40">(this car)</span>}
+                    </Link>
+                  </td>
+                  <td className="py-3 px-4 text-white/70">{c.type}</td>
+                  <td className="py-3 px-4 text-white/70">{c.rarityTier}</td>
+                  <td className="py-3 px-4"><span className="tier-badge">{c.tier}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-white/60">
+          Exact prices and rarity odds are community-reported, not dev-published — ranked tiers, not invented
+          percentages. Compare any marque&apos;s how-to-get / worth-it / how-rare pages from its row.
+        </p>
       </section>
       <AdsterraArticleBottom />
     </main>
