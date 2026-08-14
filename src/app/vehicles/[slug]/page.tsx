@@ -139,7 +139,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
         <SectionHeader
           eyebrow="Next steps"
           title="Turn this marque into profit"
-          copy="Once you decide whether to chase the {v.name}, move to these routes to complete the flip."
+          copy={`Once you decide whether to chase the ${v.name}, move to these routes to complete the flip.`}
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           <Link href="/auction-guide" className="content-card">

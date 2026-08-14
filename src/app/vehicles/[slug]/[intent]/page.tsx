@@ -169,7 +169,7 @@ export default async function VehicleIntentPage({
       <section className="mt-10">
         <SectionHeader
           eyebrow="Confirm the numbers"
-          title="Run the {v.name} through the loop"
+          title={`Run the ${v.name} through the loop`}
           copy="Decision tools protect your Cash. Estimate the repair cost and resale before you commit a large bid."
         />
         <div className="mt-6 grid gap-4 md:grid-cols-3">
