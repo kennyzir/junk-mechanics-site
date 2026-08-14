@@ -5,6 +5,7 @@ import {
   checkedDate,
   expiredCodes,
   faqs,
+  langAlternates,
   monthLabel,
   siteConfig
 } from "@/data/site";
@@ -24,7 +25,7 @@ const pageDescription = `Current ${siteConfig.gameName} codes, rewards, how to r
 export const metadata: Metadata = {
   title: `${pageTitle} - Working, Expired & How to Redeem`,
   description: pageDescription,
-  alternates: { canonical: `${siteConfig.domain}/codes` },
+  alternates: langAlternates("codes"),
   openGraph: {
     title: pageTitle,
     description: pageDescription,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { vehicleSlugs, getVehicle } from "@/data/vehicles";
-import { checkedDate, monthLabel, siteConfig } from "@/data/site";
+import { checkedDate, langAlternates, monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: `${v.name} ${v.type} (${monthLabel}) - Value, Rarity & Flip Guide | ${siteConfig.gameName}`,
     description: v.description,
-    alternates: { canonical: `${siteConfig.domain}/vehicles/${v.slug}` },
+    alternates: langAlternates(`vehicles/${v.slug}`),
     openGraph: {
       title: `${v.name} in ${siteConfig.gameName}`,
       description: v.description,

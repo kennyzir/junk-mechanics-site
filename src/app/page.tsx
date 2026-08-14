@@ -6,6 +6,7 @@ import {
   editorialSignals,
   faqs,
   heroMetrics,
+  langAlternates,
   officialLinks,
   siteConfig,
   toolCards,
@@ -19,7 +20,7 @@ import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@
 export const metadata: Metadata = {
   title: `${siteConfig.gameName} Codes, Cars, Tier List & Money Method`,
   description: siteConfig.description,
-  alternates: { canonical: siteConfig.domain },
+  alternates: langAlternates(""),
   openGraph: {
     title: `${siteConfig.gameName} Codes, Cars, Tier List & Money Method`,
     description: siteConfig.description,

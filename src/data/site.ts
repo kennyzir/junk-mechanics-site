@@ -4,6 +4,32 @@ import { gameConfig } from "@/data/game.config";
 export const checkedDate = "2026-08-14";
 export const monthLabel = "August 2026";
 
+// hreflang map shared by ALL pages. EN canonical + /es pilot. `path` = the
+// page's own slug (e.g. "codes", "vehicles/570s/how-to-get"). Each page pulls
+// this into its `alternates` so hreflang emits alongside canonical.
+// NOTES: per-page `alternates.canonical` OVERRIDES root-layout
+// `alternates.languages` (they don't merge), so the languages map MUST be
+// declared on the page, not just the root layout.
+// PHANTOM-HREFLANG GUARD (pilot finding 2026-08-15): do NOT emit hreflang to a
+// locale URL that doesn't exist yet. Right now only `/es` (homepage) exists;
+// `/es/codes` etc. are NOT built, so pointing EN pages' es-hreflang at
+// `/es/${path}` would 404 (scanned as phantom hreflang). For the pilot, es
+// resolves to `/es` only. Expand the map as each `/xx/...` page is built.
+export function langAlternates(pathname: string) {
+  const base = siteConfig.domain;
+  const clean = pathname.replace(/^\/+|\/+$/g, "");
+  const self = clean ? `${base}/${clean}` : base;
+  const esTarget = `${base}/es`; // pilot: /es homepage only, expand as /es/... pages are built
+  return {
+    canonical: self,
+    languages: {
+      "en-US": self,
+      es: esTarget,
+      "x-default": self
+    }
+  };
+}
+
 export const siteConfig: SiteConfig = {
   name: gameConfig.name,
   domain: gameConfig.domain,

@@ -46,6 +46,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true
   },
+  alternates: {
+    languages: {
+      "en-US": siteConfig.domain,
+      "es": `${siteConfig.domain}/es`,
+      "x-default": siteConfig.domain
+    }
+  },
   appleWebApp: {
     capable: true,
     title: siteConfig.name,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getVehicle, vehicleSlugs } from "@/data/vehicles";
-import { checkedDate, monthLabel, siteConfig } from "@/data/site";
+import { checkedDate, langAlternates, monthLabel, siteConfig } from "@/data/site";
 import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, PageIntro, SectionHeader } from "@/components/ui/content";
 import { AdsterraArticleBottom, AdsterraArticleMid, AdsterraArticleTop } from "@/components/ads";
@@ -55,7 +55,7 @@ export async function generateMetadata({
   return {
     title: `${c.label} ${v.name} in ${siteConfig.gameName} (${monthLabel}) | ${v.type}`,
     description: c.meta(v.name),
-    alternates: { canonical: `${siteConfig.domain}/vehicles/${v.slug}/${intent}` },
+    alternates: langAlternates(`vehicles/${v.slug}/${intent}`),
     openGraph: {
       title: `${c.titleQ(v.name)} - ${siteConfig.gameName}`,
       description: c.meta(v.name),
